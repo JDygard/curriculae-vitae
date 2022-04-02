@@ -1,0 +1,80 @@
+import GridBlock from "./GridBlock";
+import { useState } from 'react';
+import styles from "./GridSystem.module.css"
+
+const GridSystem = props => {
+    var init = [];
+    for (let i = 0; i < props.squares; i++) {
+        let push = { id: `${i}`,on:false }
+        init.push(push)
+    }
+
+    // Figure out how many columns and rows fit the amount of blocks
+    var columns = Math.round(Math.sqrt(props.squares));
+    var excess = props.squares%columns;
+    if (excess !== 0) {
+        for (let i = 0;i < excess;i++){
+            init.pop()
+        }
+    }
+    const rows = columns / (props.squares - excess)
+    
+    // Set the width prop to display different amounts of blocks appropriately
+    var width = 100 / columns;
+
+    const [gridSquares, setGridSquares] = useState(init)
+    
+    const onGridClickHandler = key => {
+        // Test for adjacent squares
+        // Test for horizontal adjacency
+        let keyInt = parseInt(key);
+        let affectedBlocks = [keyInt];
+        let right = keyInt + 1;
+        if (right%columns !== 0&&right<=init.length) {
+            affectedBlocks.push(right)
+        };
+        let left = keyInt - 1
+        if ((left+1)%columns !== 0&&left>=0) {
+            affectedBlocks.push(left)
+        }
+        // Test for vertical adjacency
+        let above = keyInt - columns
+        if (above >= 0) {
+            affectedBlocks.push(above)
+        }
+        let below = keyInt + columns
+        if (below < init.length) {
+            affectedBlocks.push(below)
+        }
+        adjustGridSquares(affectedBlocks)
+    }
+    
+    const adjustGridSquares = keys => {
+        const updatedBlocks = gridSquares;
+        for (let i = 0;i<keys.length;i++) {
+            if (updatedBlocks[keys[i]].on) {
+                updatedBlocks[keys[i]].on = false;
+            } else {
+                updatedBlocks[keys[i]].on = true;
+            }                
+        }
+        setGridSquares(updatedBlocks)
+        console.log(gridSquares)
+    }
+ 
+    return (
+        <ul className="">
+            {gridSquares.map(item => (
+                <GridBlock
+                    key={item.id}
+                    id={item.id}
+                    width={width}
+                    on={item.on}
+                    onGridClick={onGridClickHandler}
+                     />
+            ))}
+        </ul>
+    );
+};
+
+export default GridSystem;

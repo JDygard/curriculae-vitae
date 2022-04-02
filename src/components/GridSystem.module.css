@@ -1,0 +1,13 @@
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 14rem;
+    list-style-type: none;
+}
+
+ul>li {
+    font-size: 6rem;
+    vertical-align: middle;
+    display: inline-block;
+    line-height:1;
+}
