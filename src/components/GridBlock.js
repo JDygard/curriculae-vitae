@@ -5,15 +5,12 @@ const GridBlock = (props) => {
         props.onGridClick(props.id)
     }
 
-    let window = "□"
-    console.log(props)
-    if (props.on) {
-        window = "■"
-    }
+    let windowOff = "□";
+    let windowOn = "■";
 
     return (
         <li className={styles.gridblock} onClick={gridClickHandler} id={props.id} style={{width: props.width + '%', fontSize: props.width / 3 + "rem"}}>
-            {window}
+            {props.on ? windowOn : windowOff}
         </li>
     )
 }
