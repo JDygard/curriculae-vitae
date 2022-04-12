@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/curriculae-vitae/static/css/main.c6b1a6cf.css",
+    "main.js": "/curriculae-vitae/static/js/main.babd3823.js",
+    "static/js/787.d89a5279.chunk.js": "/curriculae-vitae/static/js/787.d89a5279.chunk.js",
+    "index.html": "/curriculae-vitae/index.html",
+    "main.c6b1a6cf.css.map": "/curriculae-vitae/static/css/main.c6b1a6cf.css.map",
+    "main.babd3823.js.map": "/curriculae-vitae/static/js/main.babd3823.js.map",
+    "787.d89a5279.chunk.js.map": "/curriculae-vitae/static/js/787.d89a5279.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c6b1a6cf.css",
+    "static/js/main.babd3823.js"
+  ]
+}
