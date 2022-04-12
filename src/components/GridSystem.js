@@ -141,6 +141,14 @@ const GridSystem = props => {
         )
     }
 
+    var readout = [];
+    for (let i = 0; i < gridSquares.length; i++) {
+        if (gridSquares[i].on) {
+            readout.push(gridSquares[i].id);
+        };
+    };
+    console.log(readout)
+
     return (
         <ul className="">
             {gridSquares.map(item => (
@@ -155,6 +163,7 @@ const GridSystem = props => {
             <div id="buttonsDiv">
                 <button id="reset" onClick={resetHandler}>Restart this day</button>
                 <button id="restart" onClick={restartButtonHandler}>Restart on Day 1</button>
+                <p>{readout.toString()}</p>
             </div>
         </ul>
     );
