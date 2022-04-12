@@ -45,7 +45,16 @@ const App = () => {
 
   return (
     <div className="App-header">
-      <GridSystem squares="25" currentLevel={currentLevel} dayCompleteHandler={dayCompleteHandler} />
+      <div className="navBar">
+        <div className='navLeft'></div>
+        <div className='navMid'></div>
+        <div className='navRight'></div>
+      </div>
+      <div className="middleRow">
+        <div className="left"></div>
+        <GridSystem squares="25" currentLevel={currentLevel} dayCompleteHandler={dayCompleteHandler} />
+        <div className="right"></div>
+      </div>
     </div>
   );
 }

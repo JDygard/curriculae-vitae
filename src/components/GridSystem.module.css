@@ -1,13 +1,13 @@
 ul {
     display: flex;
     flex-wrap: wrap;
-    margin: 14rem;
     list-style-type: none;
+    padding: 0;
+    margin-left:15px;
 }
 
 ul>li {
-    font-size: 6rem;
-    vertical-align: middle;
-    display: inline-block;
+    display: flex;
+    align-items: center;
     line-height:1;
 }
