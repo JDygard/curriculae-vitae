@@ -11,3 +11,45 @@ ul>li {
     align-items: center;
     line-height:1;
 }
+
+@media screen and (min-width:1901px) {
+    ul>li {
+        font-size: 6vw;
+    }
+}
+
+@media screen and (min-width:1561px) and (max-width:1900px) {
+    ul>li {
+        font-size: 7vw;
+    }
+}
+
+@media screen and (min-width:1201px) and (max-width:1560px) {
+    ul>li {
+        font-size: 8vw;
+    }
+}
+
+@media screen and (min-width:861px) and (max-width:1200px) {
+    ul>li {
+        font-size: 9vw;
+    }
+}
+
+@media screen and (min-width:681px) and (max-width:860px) {
+    ul>li {
+        font-size: 10vw;
+    }
+}
+
+@media screen and (min-width:461px) and (max-width:680px) {
+    ul>li {
+        font-size: 11vw;
+    }
+}
+
+@media screen and (max-width:460px) {
+    ul>li {
+        font-size: 12vw;
+    }
+}

@@ -9,7 +9,7 @@ const GridBlock = (props) => {
     let windowOn = "■";
 
     return (
-        <li className={styles.gridblock} onClick={gridClickHandler} id={props.id} style={{width: props.width + '%', fontSize: props.width / 3 + "rem"}}>
+        <li className={styles.gridblock} onClick={gridClickHandler} id={props.id} style={{width: props.width + '%'}}>
             {props.on ? windowOn : windowOff}
         </li>
     )
