@@ -1,6 +1,7 @@
 import GridBlock from "./GridBlock";
 import { useState, useEffect } from 'react';
-import styles from "./GridSystem.module.css";
+import "./GridSystem.module.css";
+import * as ReactDOM from 'react-dom';
 
 const GridSystem = props => {
     const [gridSquares, setGridSquares] = useState([]);
@@ -22,8 +23,6 @@ const GridSystem = props => {
         setNewLevel(false)
     }
 
-
-
     // Figure out how many columns and rows fit the amount of blocks
     var columns = Math.round(Math.sqrt(props.squares));
     var excess = props.squares % columns;
@@ -42,7 +41,6 @@ const GridSystem = props => {
     const dayCompleteHandler = props.dayCompleteHandler;
     const gridCheck = gridSquares;
 
-
     useEffect(() => {
         for (let i = 0; i < gridCheck.length; i++) {
             if (gridCheck[i].on === true) {
@@ -52,20 +50,6 @@ const GridSystem = props => {
         setNewLevel(true)
         dayCompleteHandler(props.currentLevel);
     }, [dayCompleteHandler, props.currentLevel, gridCheck])
-
-    // const checkDayComplete = data => {
-    //     let complete = true;
-    //     for (let i = 0; i < data.length; i++) {
-    //         if (data[i].on === true) {
-    //             complete = false
-    //             return
-    //         };
-    //     };
-    //     if (complete) {
-    //         console.log("complete")
-    //         dayCompleteHandler()
-    //     }
-    // };
 
     const adjustGridSquares = keys => {
         // Collect the current state
@@ -82,7 +66,6 @@ const GridSystem = props => {
             };
             updateInstructions.push(instruction);
         }
-
 
         // Pass instructions into the state
         setGridSquares(prevBlocks => {
@@ -121,6 +104,43 @@ const GridSystem = props => {
         adjustGridSquares(affectedBlocks);
     }
 
+    const resetHandler = () => {
+        setNewLevel(true)
+    }
+
+    const restartHandler = (event) => {
+        cancelHandler()
+        setNewLevel(true)
+        dayCompleteHandler("restart")
+    }
+
+    const cancelHandler = () => {
+        const element = (
+            <div id="buttonsDiv">
+                <button id="reset" onClick={resetHandler}>Restart this day</button>
+                <button id="restart" onClick={restartButtonHandler}>Restart on Day 1</button>
+            </div>
+        )
+        ReactDOM.render(
+            element,
+            document.getElementById("buttonsDiv")
+        )
+    }
+
+    const restartButtonHandler = () => {
+        const element = (
+            <div id="buttonsDiv">
+                <button id="reset" onClick={resetHandler}>Restart this day</button>
+                <button id="restart" onClick={cancelHandler}>  Cancel the restart  </button>
+                <button className="restartSlide" onClick={restartHandler}>Delete my progress</button>
+            </div>
+        )
+        ReactDOM.render(
+            element,
+            document.getElementById("buttonsDiv")
+        )
+    }
+
     return (
         <ul className="">
             {gridSquares.map(item => (
@@ -132,6 +152,10 @@ const GridSystem = props => {
                     onGridClick={onGridClickHandler}
                 />
             ))}
+            <div id="buttonsDiv">
+                <button id="reset" onClick={resetHandler}>Restart this day</button>
+                <button id="restart" onClick={restartButtonHandler}>Restart on Day 1</button>
+            </div>
         </ul>
     );
 };

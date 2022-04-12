@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 import GridSystem from './components/GridSystem'
 
@@ -29,13 +29,17 @@ const App = () => {
   const [currentLevel, setCurrentLevel] = useState(days[cookieValue]);
 
   // The method passed to GridBlock to lift the state
-  const dayCompleteHandler = (level) => {
-    console.log("This")
+  const dayCompleteHandler = (event) => {
+    if (event === "restart") {
+      console.log("ost!")
+      document.cookie = `day=0; SameSite=None; Secure`;
+      setCurrentLevel(days[0]);
+      return;
+    }
     cookieValue = parseInt(document.cookie
       .split('; ')
       .find(row => row.startsWith('day='))
       .split('=')[1]);
-    console.log(JSON.stringify(days[cookieValue + 1]) + " " + JSON.stringify(currentLevel))
     if (JSON.stringify(days[cookieValue + 1]) !== JSON.stringify(currentLevel)) {
       cookieValue += 1;
       document.cookie = `day=${cookieValue}; SameSite=None; Secure`;
@@ -46,9 +50,16 @@ const App = () => {
   return (
     <div className="App-header">
       <div className="navBar">
-        <div className='navLeft'></div>
-        <div className='navMid'></div>
-        <div className='navRight'></div>
+        <div className='navLeft'>
+          <h3 className="fadeIn">
+            Day {cookieValue + 1}
+          </h3>
+        </div>
+        <div className='navMid'>
+          {cookieValue === 0 ? <h3 className="fadeIn">Turn off the lights</h3> : ""}
+        </div>
+        <div className='navRight'>
+        </div>
       </div>
       <div className="middleRow">
         <div className="left"></div>
