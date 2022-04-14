@@ -5,7 +5,7 @@ import * as ReactDOM from 'react-dom';
 
 const GridSystem = props => {
     const [gridSquares, setGridSquares] = useState([]);
-    const [newLevel, setNewLevel] = useState(true)
+    const [newLevel, setNewLevel] = useState(true);
 
     if (newLevel) {
         var init = [];
@@ -33,7 +33,6 @@ const GridSystem = props => {
             init.pop();
         };
     };
-    // const rows = columns / (props.squares - excess)
 
     // Set the width prop to display different amounts of blocks appropriately
     var width = 100 / columns;
@@ -141,14 +140,6 @@ const GridSystem = props => {
         )
     }
 
-    var readout = [];
-    for (let i = 0; i < gridSquares.length; i++) {
-        if (gridSquares[i].on) {
-            readout.push(gridSquares[i].id);
-        };
-    };
-    console.log(readout)
-
     return (
         <ul className="">
             {gridSquares.map(item => (
@@ -163,7 +154,6 @@ const GridSystem = props => {
             <div id="buttonsDiv">
                 <button id="reset" onClick={resetHandler}>Restart this day</button>
                 <button id="restart" onClick={restartButtonHandler}>Restart on Day 1</button>
-                <p>{readout.toString()}</p>
             </div>
         </ul>
     );
